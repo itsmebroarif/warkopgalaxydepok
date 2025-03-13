@@ -25,17 +25,12 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.min.css" rel="stylesheet">
 
-    <style>
-        .navbar.bg-primary {
-            transition: background-color 0.3s ease-in-out;
-        }
-    </style>
 </head>
 
 <body>
     <!-- Navbar Start -->
     <div class="container p-0 nav-bar">
-        <nav class="navbar fixed-top navbar-expand-lg bg-none navbar-dark py-1">
+        <nav class="navbar fixed-top navbar-expand-lg bg-primary navbar-dark py-1">
             <a href="index.html" class="navbar-brand px-lg-2 m-0">
                 <h2 class="m-0 text-uppercase text-white">Warkop Galaxy</h2>
             </a>
@@ -55,9 +50,9 @@
     </div>
     <!-- Navbar End -->
 
-<section id="header">
+<section id="header" style="padding-top: 0.01rem;">
         <!-- Carousel Start -->
-    <div class="container-fluid p-0 mb-5">
+    <div class="container-fluid p-0 mt-5 ">
         <div id="blog-carousel" class="carousel slide overlay-bottom" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -392,15 +387,6 @@
 
 
 <script>
-    window.addEventListener("scroll", function () {
-        var navbar = document.querySelector(".navbar");
-        if (window.scrollY > window.innerHeight - navbar.offsetHeight) {
-            navbar.classList.add("bg-primary");
-        } else {
-            navbar.classList.remove("bg-primary");
-        }
-    });
-
      document.addEventListener("DOMContentLoaded", function () {
         const navLinks = document.querySelectorAll(".nav-item.nav-link");
 
