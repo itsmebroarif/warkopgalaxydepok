@@ -1,7 +1,10 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" data-theme="light">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warkop Galaxy - Nongkrong Asik, Rasa Bintang Lima</title>
+<meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="Warkop Galaxy jati asri, Warkop, Galaxy, Depok, Warkop Depok">
     <meta name="description" content="Warkop Galaxy adalah coffee shop yang berlokasi di Depok, Jawa Barat. Kami menyajikan berbagai macam kopi dan makanan ringan yang sangat lezat dan terjangkau.">
@@ -9,17 +12,6 @@
     <meta property="og:title" content="Warkop Galaxy">
     <meta property="og:url" content="https://warkopgalaxydepok.vercel.app">
     <meta property="og:image" content="https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=KpoOWdyF1zx9RIIgp_ohBw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=163.30547&pitch=0&thumbfov=100">
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> 
-
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <title>Warkop Galaxy</title>
-
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
@@ -33,12 +25,25 @@
     <style>
       /* --- VARIABEL WARNA WARKOP GALAXY --- */
       :root {
-        --primary-color: #ff4757; /* Merah enerjik */
-        --secondary-color: #ff6b81; /* Merah muda/coral */
-        --dark-color: #2f3542; /* Abu-abu gelap */
-        --light-color: #f1f2f6; /* Abu-abu sangat terang */
+        --primary-color: #ff4757; /* Merah dinamis */
+        --dark-color: #2f3542;
+        --light-color: #f1f2f6;
         --white: #ffffff;
+        --bg-color: #f1f2f6;
+        --text-color: #2f3542;
+        --section-bg: #ffffff;
         --border-radius: 12px;
+        --transition-speed: 0.3s;
+      }
+
+      /* --- TEMA GELAP (DARK MODE) --- */
+      [data-theme="dark"] {
+        --bg-color: #121212;
+        --white: #1e1e1e;
+        --text-color: #e0e0e0;
+        --light-color: #1a1a1a;
+        --section-bg: #1e1e1e;
+        --dark-color: #000000;
       }
 
       /* --- RESET & BASIC --- */
@@ -52,14 +57,12 @@
       body {
         font-family: "Poppins", sans-serif;
         line-height: 1.6;
-        color: var(--dark-color);
-        background-color: var(--light-color);
-        padding-bottom: 80px; /* Space for floating cart */
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        transition: background-color var(--transition-speed), color var(--transition-speed);
       }
 
-      h1,
-      h2,
-      h3 {
+      h1, h2, h3 {
         font-family: "Playfair Display", serif;
       }
       ul {
@@ -85,7 +88,7 @@
       .btn {
         display: inline-block;
         background: var(--primary-color);
-        color: var(--white);
+        color: #ffffff;
         padding: 12px 30px;
         border-radius: 30px;
         transition: all 0.3s ease;
@@ -93,22 +96,25 @@
         cursor: pointer;
         font-weight: 600;
         font-family: "Poppins", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
       }
       .btn:hover {
         background: var(--dark-color);
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        color: #ffffff;
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(255, 71, 87, 0.4);
       }
 
       /* --- HEADER & NAVIGASI --- */
       header {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        background: var(--section-bg);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
         position: fixed;
         width: 100%;
         top: 0;
         z-index: 1000;
+        transition: background-color var(--transition-speed);
       }
       nav {
         display: flex;
@@ -128,7 +134,7 @@
         align-items: center;
       }
       .nav-links li {
-        margin-left: 30px;
+        margin-left: 20px;
       }
       .nav-links a {
         font-weight: 600;
@@ -139,23 +145,54 @@
         color: var(--primary-color);
       }
 
+      /* --- CONTROLS (TEMA & BAHASA) --- */
+      .controls {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        margin-left: 20px;
+      }
+      .btn-ctrl {
+        background: transparent;
+        border: 2px solid var(--text-color);
+        color: var(--text-color);
+        padding: 5px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+      .btn-ctrl:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+      select.btn-ctrl {
+        appearance: none;
+        padding-right: 25px;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="gray" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>') no-repeat right 8px center;
+      }
+      [data-theme="dark"] select.btn-ctrl {
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="white" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>') no-repeat right 8px center;
+      }
+
       /* --- HERO SECTION --- */
       #home {
         height: 100vh;
         background:
-          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+          linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
           url("bg.jpg") no-repeat center center/cover;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        color: var(--white);
+        color: #ffffff;
         padding-top: 80px;
       }
       .hero-content h1 {
         font-size: 4.5rem;
         margin-bottom: 20px;
         line-height: 1.1;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
       }
       .hero-content p {
         font-size: 1.2rem;
@@ -168,7 +205,7 @@
       /* --- SECTION UMUM --- */
       section {
         padding: 100px 0;
-        background: var(--white);
+        background: var(--section-bg);
       }
       section:nth-child(even) {
         background: var(--light-color);
@@ -183,7 +220,8 @@
         margin-bottom: 10px;
       }
       .section-title p {
-        color: #7f8fa6;
+        color: var(--text-color);
+        opacity: 0.7;
         font-size: 1.1rem;
       }
 
@@ -201,82 +239,11 @@
       }
       .about-img img {
         box-shadow: 15px 15px 0 var(--primary-color);
+        transition: transform 0.3s;
       }
-
-      /* --- PRODUCT (MENU ONLINE) --- */
-      .category-filter {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 40px;
-        flex-wrap: wrap;
-      }
-      .btn-filter {
-        background: transparent;
-        border: 2px solid var(--primary-color);
-        color: var(--primary-color);
-        padding: 8px 20px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: all 0.3s;
-      }
-      .btn-filter.active,
-      .btn-filter:hover {
-        background: var(--primary-color);
-        color: var(--white);
-      }
-
-      .product-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 25px;
-      }
-      .product-card {
-        background: var(--white);
-        padding: 25px 20px;
-        border-radius: var(--border-radius);
-        text-align: center;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        transition: 0.3s;
-        border: 1px solid #f1f2f6;
-        display: flex;
-        flex-direction: column;
-      }
-      .product-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 30px rgba(255, 71, 87, 0.15);
-        border-color: var(--secondary-color);
-      }
-      .product-icon {
-        font-size: 3rem;
-        color: var(--primary-color);
-        margin-bottom: 15px;
-        height: 70px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 71, 87, 0.1);
-        width: 70px;
-        border-radius: 50%;
-        margin-inline: auto;
-      }
-      .product-card h3 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        font-family: "Poppins", sans-serif;
-        font-weight: 700;
-        flex-grow: 1;
-      }
-      .price {
-        color: var(--primary-color);
-        font-weight: 800;
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-      }
-      .btn-add {
-        width: 100%;
-        padding: 10px;
+      .about-img img:hover {
+        transform: translate(-5px, -5px);
+        box-shadow: 20px 20px 0 var(--primary-color);
       }
 
       /* --- GALLERY (INDOOR/OUTDOOR) --- */
@@ -291,6 +258,11 @@
         border-radius: var(--border-radius);
         height: 300px;
         cursor: pointer;
+        border: 2px solid transparent;
+        transition: 0.3s;
+      }
+      .gallery-item:hover {
+        border-color: var(--primary-color);
       }
       .gallery-item img {
         width: 100%;
@@ -300,14 +272,14 @@
       }
       .gallery-item:hover img {
         transform: scale(1.1);
-        filter: brightness(0.7);
+        filter: brightness(0.6);
       }
       .gallery-caption {
         position: absolute;
         bottom: -50px;
         left: 0;
         width: 100%;
-        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
         color: white;
         padding: 20px;
         font-size: 1.2rem;
@@ -320,13 +292,22 @@
       }
 
       /* --- CONTACT & FOOTER --- */
+      .contact-wrapper {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+      .contact-info, .contact-form-side {
+        flex: 1;
+        min-width: 300px;
+      }
       .contact-container {
-        max-width: 600px;
-        margin: 0 auto;
-        background: var(--white);
+        background: var(--section-bg);
         padding: 40px;
         border-radius: var(--border-radius);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--light-color);
       }
       .form-group {
         margin-bottom: 20px;
@@ -340,7 +321,9 @@
       .form-group textarea {
         width: 100%;
         padding: 15px;
-        border: 1px solid #dfe4ea;
+        border: 1px solid var(--text-color);
+        background: transparent;
+        color: var(--text-color);
         border-radius: 8px;
         font-family: inherit;
         transition: 0.3s;
@@ -349,11 +332,28 @@
       .form-group textarea:focus {
         outline: none;
         border-color: var(--primary-color);
+        box-shadow: 0 0 8px rgba(255, 71, 87, 0.2);
+      }
+      .map-responsive {
+        position: relative;
+        overflow: hidden;
+        padding-top: 56.25%;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        border: 2px solid var(--primary-color);
+      }
+      .map-responsive iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
       }
 
       footer {
-        background: var(--dark-color);
-        color: var(--white);
+        background: #000000;
+        color: #ffffff;
         padding: 50px 0 20px;
         text-align: center;
       }
@@ -371,151 +371,6 @@
         color: var(--primary-color);
       }
 
-      /* --- SHOPPING CART UI --- */
-      .floating-cart-btn {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background: var(--primary-color);
-        color: white;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8rem;
-        box-shadow: 0 10px 25px rgba(255, 71, 87, 0.4);
-        cursor: pointer;
-        z-index: 1050;
-        transition: 0.3s;
-      }
-      .floating-cart-btn:hover {
-        transform: scale(1.1);
-      }
-      .cart-badge {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: var(--dark-color);
-        color: white;
-        font-size: 0.8rem;
-        font-weight: bold;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid white;
-      }
-
-      /* Modal Keranjang (Sidebar Kanan) */
-      .cart-sidebar {
-        position: fixed;
-        top: 0;
-        right: -450px;
-        width: 400px;
-        max-width: 100%;
-        height: 100vh;
-        background: var(--white);
-        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
-        z-index: 2000;
-        transition: right 0.4s ease;
-        display: flex;
-        flex-direction: column;
-      }
-      .cart-sidebar.open {
-        right: 0;
-      }
-      .cart-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1999;
-        display: none;
-        backdrop-filter: blur(3px);
-      }
-      .cart-overlay.show {
-        display: block;
-      }
-
-      .cart-header {
-        padding: 20px;
-        background: var(--primary-color);
-        color: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .cart-header h3 {
-        margin: 0;
-        font-family: "Poppins", sans-serif;
-        font-size: 1.2rem;
-      }
-      .close-cart {
-        background: transparent;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-      }
-
-      .cart-body {
-        padding: 20px;
-        flex-grow: 1;
-        overflow-y: auto;
-      }
-      .cart-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px dashed #dfe4ea;
-        padding: 15px 0;
-      }
-      .cart-item-info h4 {
-        font-size: 1rem;
-        margin-bottom: 5px;
-      }
-      .cart-item-info p {
-        color: var(--primary-color);
-        font-weight: bold;
-        font-size: 0.9rem;
-        margin: 0;
-      }
-      .cart-qty-ctrl {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--light-color);
-        padding: 5px 10px;
-        border-radius: 20px;
-      }
-      .cart-qty-ctrl button {
-        background: none;
-        border: none;
-        font-size: 1rem;
-        color: var(--dark-color);
-        cursor: pointer;
-        font-weight: bold;
-      }
-
-      .cart-footer {
-        padding: 20px;
-        border-top: 1px solid #dfe4ea;
-        background: var(--light-color);
-      }
-      .cart-total {
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 15px;
-      }
-
       /* Responsive */
       @media (max-width: 768px) {
         .nav-links {
@@ -524,42 +379,6 @@
         .hero-content h1 {
           font-size: 2.8rem;
         }
-        .cart-sidebar {
-          width: 100%;
-        }
-      }
-      /* Container baru untuk tata letak Kontak */
-      .contact-wrapper {
-        display: flex;
-        gap: 40px;
-        flex-wrap: wrap; /* Ini kunci agar di mobile pindah ke bawah */
-        align-items: flex-start;
-      }
-
-      .contact-info {
-        flex: 1;
-        min-width: 300px;
-      }
-      .contact-form-side {
-        flex: 1;
-        min-width: 300px;
-      }
-
-      /* Styling Peta */
-      .map-responsive {
-        position: relative;
-        overflow: hidden;
-        padding-top: 56.25%; /* Rasio 16:9 */
-        border-radius: 12px;
-        margin-bottom: 20px;
-      }
-      .map-responsive iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
       }
     </style>
   </head>
@@ -569,26 +388,35 @@
         <nav>
           <div class="logo"><i class="fas fa-rocket"></i> Warkop Galaxy</div>
           <ul class="nav-links">
-            <li><a href="#home">Beranda</a></li>
-            <li><a href="#about">Tentang Kami</a></li>
-            <li><a href="#product">Pesan Online</a></li>
-            <li><a href="#gallery">Galeri Area</a></li>
-            <li><a href="#contact">Kontak</a></li>
+            <li><a href="#home" data-i18n="navHome">Beranda</a></li>
+            <li><a href="#about" data-i18n="navAbout">Tentang Kami</a></li>
+            <li><a href="https://pos-warkop.vercel.app/customer.html" target="_blank" data-i18n="navOrder">Pesan Online</a></li>
+            <li><a href="#gallery" data-i18n="navGallery">Galeri Area</a></li>
+            <li><a href="#contact" data-i18n="navContact">Kontak</a></li>
           </ul>
+          <div class="controls">
+            <select id="lang-switch" class="btn-ctrl" onchange="changeLanguage(this.value)">
+              <option value="id">🇮🇩 ID</option>
+              <option value="en">🇬🇧 EN</option>
+              <option value="jp">🇯🇵 JP</option>
+            </select>
+            <button id="theme-toggle" class="btn-ctrl" onclick="toggleTheme()">
+              <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+          </div>
         </nav>
       </div>
     </header>
 
     <section id="home">
       <div class="hero-content">
-        <h1>Awali Hari Dengan Semangat Galaxy</h1>
-        <p>
-          Tempat nongkrong andalan warga Depok. Pesan langsung dari laptop atau
-          HP-mu, kami antarkan ke mejamu.
+        <h1 data-i18n="heroTitle">Awali Hari Dengan Semangat Galaxy</h1>
+        <p data-i18n="heroDesc">
+          Tempat nongkrong andalan warga Depok. Pesan langsung lewat sistem kasir online kami, praktis dan cepat!
         </p>
-        <a href="#product" class="btn"
-          ><i class="fas fa-shopping-cart me-2"></i> Mulai Pesan Sekarang</a
-        >
+        <a href="https://pos-warkop.vercel.app/customer.html" target="_blank" class="btn">
+          <i class="fas fa-external-link-alt me-2"></i> <span data-i18n="btnOrder">Buka Menu & Pesan</span>
+        </a>
       </div>
     </section>
 
@@ -596,145 +424,105 @@
       <div class="container">
         <div class="about-flex">
           <div class="about-img">
-            <img src="image.png" width="350px"alt="Suasana Kedai Kopi" />
+            <img src="image.png" width="350px" alt="Suasana Kedai Kopi" onerror="this.src='https://via.placeholder.com/350x450'" />
           </div>
           <div class="about-text">
-            <div
-              class="section-title"
-              style="text-align: left; margin-bottom: 20px"
-            >
-              <h2>Nongkrong Asik, Harga Gak Bikin Panik</h2>
+            <div class="section-title" style="text-align: left; margin-bottom: 20px">
+              <h2 data-i18n="aboutTitle">Nongkrong Asik, Harga Gak Bikin Panik</h2>
             </div>
-            <p>
-              Selamat datang di <strong>Warkop Galaxy</strong>! Kami memadukan
-              konsep warkop tradisional dengan kenyamanan cafe modern. Buka 24
-              jam untuk menemani kamu nugas, mabar, atau sekadar bertukar
-              cerita.
+            <p data-i18n="aboutP1">
+              Selamat datang di <strong>Warkop Galaxy</strong>! Kami memadukan konsep warkop tradisional dengan kenyamanan cafe modern ala jejepangan. Buka 24 jam untuk menemani kamu nugas, mabar, atau sekadar bertukar cerita.
             </p>
             <br />
-            <p>
-              Fasilitas lengkap: WiFi kencang, colokan di setiap meja, dan area
-              yang luas. Jangan repot antri, gunakan fitur
-              <strong>Pesan Online</strong> di website ini dan pesanan langsung
-              mendarat di mejamu!
+            <p data-i18n="aboutP2">
+              Fasilitas lengkap: WiFi kencang, colokan di setiap meja, dan area yang luas. Langsung cek ketersediaan menu dan pesan via sistem POS kami, pesanan langsung mendarat di mejamu!
             </p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="product" style="background: var(--light-color)">
-      <div class="container">
-        <div class="section-title">
-          <h2>Menu Andalan Kami</h2>
-          <p>Klik tombol tambah untuk memesan. Menu akan masuk ke keranjang.</p>
-        </div>
-
-        <div class="category-filter" id="category-filter"></div>
-
-        <div class="product-grid" id="product-grid"></div>
       </div>
     </section>
 
     <section id="gallery">
       <div class="container">
         <div class="section-title">
-          <h2>Suasana Warkop Galaxy</h2>
-          <p>Pilih spot ternyaman sesuai mood kamu hari ini.</p>
+          <h2 data-i18n="galleryTitle">Suasana Warkop Galaxy</h2>
+          <p data-i18n="galleryDesc">Pilih spot ternyaman sesuai mood kamu hari ini.</p>
         </div>
         <div class="gallery-grid">
           <div class="gallery-item">
-            <img
-              src="3.jpeg"
-              alt="Indoor Area"
-            />
+            <img src="3.jpeg" alt="Parking Area" onerror="this.src='https://via.placeholder.com/400x300'" />
             <div class="gallery-caption">
-              <i class="fas fa-snowflake text-primary"></i> Parkiran Motor 
+              <i class="fas fa-snowflake text-primary"></i> <span data-i18n="gal1">Parkiran Motor</span>
             </div>
           </div>
           <div class="gallery-item">
-            <img
-              
-              src="1.jpeg"
-              alt="Outdoor Area"
-            />
+            <img src="1.jpeg" alt="Outdoor Area" onerror="this.src='https://via.placeholder.com/400x300'" />
             <div class="gallery-caption">
-              <i class="fas fa-wind text-primary"></i> Smoking Area
+              <i class="fas fa-wind text-primary"></i> <span data-i18n="gal2">Smoking Area</span>
             </div>
           </div>
           <div class="gallery-item">
-            <img
-              src="2.jpg"
-              alt="Meja Kerja"
-            />
+            <img src="2.jpg" alt="Workspace" onerror="this.src='https://via.placeholder.com/400x300'" />
             <div class="gallery-caption">
-              <i class="fas fa-laptop text-primary"></i> Ruang Produktif
+              <i class="fas fa-laptop text-primary"></i> <span data-i18n="gal3">Ruang Produktif</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" style="background: var(--light-color)">
+    <section id="contact">
       <div class="container">
         <div class="section-title">
-          <h2>Hubungi Kami</h2>
-          <p>Ingin booking tempat atau sekadar tanya-tanya?</p>
+          <h2 data-i18n="contactTitle">Hubungi Kami</h2>
+          <p data-i18n="contactDesc">Ingin booking tempat atau sekadar tanya-tanya?</p>
         </div>
 
         <div class="contact-wrapper">
           <div class="contact-info">
             <div class="map-responsive">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.176472251398!2d106.8282367!3d-6.3705004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ec0000000000%3A0x0!2sWarkop%20Galaxy!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126907.03960010991!2d106.750567!3d-6.39294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ebe20a4cc833%3A0x7d01cdce34d13fba!2sDepok%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1700000000000"
                 allowfullscreen=""
                 loading="lazy"
               ></iframe>
             </div>
-            <h3>Alamat Kami</h3>
+            <h3 data-i18n="contactAddrTitle">Alamat Kami</h3>
             <p>
-              <i class="fas fa-map-marker-alt text-primary"></i> Jl. Jati Raya No.45, Kelurahan Sukamaju, Kecamatan. Cilodong, Kota Depok, Jawa Barat 16475
+              <i class="fas fa-map-marker-alt" style="color: var(--primary-color)"></i> Jl. Jati Raya
+              No.45, Kelurahan Sukamaju, Kecamatan. Cilodong, Kota Depok, Jawa
+              Barat 16475
             </p>
-            <p><i class="fas fa-phone text-primary"></i> 0858-8422-8117</p>
+            <p><i class="fas fa-phone" style="color: var(--primary-color)"></i> 0858-8422-8117</p>
           </div>
 
           <div class="contact-form-side">
-            <div class="contact-container" style="max-width: 100%; margin: 0">
+            <div class="contact-container">
               <form
                 onsubmit="
                   event.preventDefault();
-                  Swal.fire(
-                    'Terkirim!',
-                    'Pesan Anda sudah kami terima.',
-                    'success',
-                  );
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Terkirim!',
+                    text: 'Pesan Anda sudah kami terima.',
+                    background: document.documentElement.getAttribute('data-theme') === 'dark' ? '#1e1e1e' : '#fff',
+                    color: document.documentElement.getAttribute('data-theme') === 'dark' ? '#fff' : '#000'
+                  });
                 "
               >
                 <div class="form-group">
-                  <label>Nama Lengkap</label>
-                  <input
-                    type="text"
-                    placeholder="Masukkan nama Anda..."
-                    required
-                  />
+                  <label data-i18n="formName">Nama Lengkap</label>
+                  <input type="text" id="formInputName" placeholder="Masukkan nama Anda..." required />
                 </div>
                 <div class="form-group">
-                  <label>Email / No. HP</label>
-                  <input
-                    type="text"
-                    placeholder="Agar kami bisa membalas..."
-                    required
-                  />
+                  <label data-i18n="formContact">Email / No. HP</label>
+                  <input type="text" id="formInputContact" placeholder="Agar kami bisa membalas..." required />
                 </div>
                 <div class="form-group">
-                  <label>Pesan / Keperluan Booking</label>
-                  <textarea
-                    rows="4"
-                    placeholder="Tulis pesan Anda di sini..."
-                    required
-                  ></textarea>
+                  <label data-i18n="formMsg">Pesan / Keperluan Booking</label>
+                  <textarea rows="4" id="formInputMsg" placeholder="Tulis pesan Anda di sini..." required></textarea>
                 </div>
-                <button type="submit" class="btn" style="width: 100%">
+                <button type="submit" class="btn" style="width: 100%" data-i18n="btnSubmit">
                   Kirim Pesan
                 </button>
               </form>
@@ -746,451 +534,112 @@
 
     <footer>
       <div class="container">
-        <h3
-          style="
-            font-family: &quot;Playfair Display&quot;, serif;
-            font-size: 2rem;
-          "
-        >
-          <i class="fas fa-rocket"></i> Warkop Galaxy
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem;">
+          <i class="fas fa-rocket" style="color: var(--primary-color)"></i> Warkop Galaxy
         </h3>
-        <p>Depok, Jawa Barat. Buka 24 Jam Non-Stop.</p>
+        <p data-i18n="footerLoc">Depok, Jawa Barat. Buka 24 Jam Non-Stop.</p>
         <div class="footer-links">
-          <a href="#home">Beranda</a>
-          <a href="#about">Tentang Kami</a>
-          <a href="#product">Menu</a>
-          <a href="#gallery">Fasilitas</a>
+          <a href="#home" data-i18n="navHome">Beranda</a>
+          <a href="#about" data-i18n="navAbout">Tentang Kami</a>
+          <a href="https://pos-warkop.vercel.app/customer.html" target="_blank" data-i18n="navOrder">Pesan Online</a>
+          <a href="#gallery" data-i18n="navGallery">Galeri Area</a>
         </div>
         <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 20px">
-          &copy; 2026 Warkop Galaxy. Developed with
-          <i class="fas fa-heart text-danger"></i>.
+          © 2026 Warkop Galaxy. Developed with <i class="fas fa-heart" style="color: var(--primary-color)"></i>.
         </p>
       </div>
     </footer>
 
-    <div class="floating-cart-btn" onclick="toggleCart()">
-      <i class="fas fa-shopping-bag"></i>
-      <div class="cart-badge" id="cart-badge">0</div>
-    </div>
-
-    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
-
-    <div class="cart-sidebar" id="cart-sidebar">
-      <div class="cart-header">
-        <h3><i class="fas fa-shopping-cart"></i> Pesanan Saya</h3>
-        <button class="close-cart" onclick="toggleCart()">&times;</button>
-      </div>
-
-      <div class="cart-body" id="cart-body">
-        <div style="text-align: center; color: #7f8fa6; margin-top: 50px">
-          <i class="fas fa-box-open fa-3x mb-3"></i>
-          <p>Keranjang kamu masih kosong nih.</p>
-        </div>
-      </div>
-
-      <div class="cart-footer">
-        <div class="cart-total">
-          <span>Total Bayar:</span>
-          <span id="cart-total-price" style="color: var(--primary-color)"
-            >Rp 0</span
-          >
-        </div>
-
-        <div class="form-group" style="margin-bottom: 10px">
-          <input
-            type="text"
-            id="orderName"
-            placeholder="Nama Pemesan (contoh: Arif)"
-          />
-        </div>
-        <div class="form-group" style="margin-bottom: 15px">
-          <input
-            type="number"
-            id="orderTable"
-            placeholder="Nomor Meja (contoh: 4)"
-          />
-        </div>
-
-        <button
-          class="btn"
-          style="width: 100%; background: #25d366"
-          onclick="checkoutWA()"
-        >
-          <i class="fab fa-whatsapp fa-lg me-1"></i> Order Sekarang via WA
-        </button>
-      </div>
-    </div>
-
     <script>
-      const WA_NUMBER = "6285884228117";
-
-      const menuData = [
-        // Kopi Hitam
-        {
-          id: "k1",
-          name: "Kapal Api Special Mix",
-          category: "Kopi Hitam",
-          icon: "fa-mug-hot",
-          basePrice: 4000,
-        },
-        {
-          id: "k2",
-          name: "Kopi Liong Cap Bulan",
-          category: "Kopi Hitam",
-          icon: "fa-mug-hot",
-          basePrice: 4000,
-        },
-        {
-          id: "k4",
-          name: "Nescafe Classic",
-          category: "Kopi Hitam",
-          icon: "fa-mug-hot",
-          basePrice: 4000,
-        },
-        // Kopi Susu & Rasa
-        {
-          id: "ks1",
-          name: "Indocafe Coffeemix",
-          category: "Kopi Susu",
-          icon: "fa-coffee",
-          basePrice: 5000,
-        },
-        {
-          id: "ks2",
-          name: "Good Day Mocacinno",
-          category: "Kopi Susu",
-          icon: "fa-coffee",
-          basePrice: 5000,
-        },
-        {
-          id: "ks3",
-          name: "Luwak White Koffie",
-          category: "Kopi Susu",
-          icon: "fa-coffee",
-          basePrice: 5000,
-        },
-        {
-          id: "ks4",
-          name: "Torabika Cappuccino",
-          category: "Kopi Susu",
-          icon: "fa-coffee",
-          basePrice: 6000,
-        },
-        {
-          id: "ks5",
-          name: "Kopi ABC Susu",
-          category: "Kopi Hitam",
-          icon: "fa-mug-hot",
-          basePrice: 5000,
-        },
-        {
-          id: "ks6",
-          name: "Kopi ABC Klepon",
-          category: "Kopi Hitam",
-          icon: "fa-mug-hot",
-          basePrice: 5000,
-        },
-        // Cokelat & Susu
-        {
-          id: "c1",
-          name: "Milo",
-          category: "Cokelat & Susu",
-          icon: "fa-glass-water",
-          basePrice: 6000,
-        },
-        {
-          id: "c2",
-          name: "Chocolatos Drink",
-          category: "Cokelat & Susu",
-          icon: "fa-glass-water",
-          basePrice: 6000,
-        },
-        {
-          id: "c3",
-          name: "Susu Kental Manis Putih",
-          category: "Cokelat & Susu",
-          icon: "fa-bottle-water",
-          basePrice: 5000,
-        },
-        {
-          id: "c4",
-          name: "Susu Kental Manis Coklat",
-          category: "Cokelat & Susu",
-          icon: "fa-bottle-water",
-          basePrice: 5000,
-        },
-        {
-          id: "c5",
-          name: "Energen",
-          category: "Cokelat & Susu",
-          icon: "fa-mug-saucer",
-          basePrice: 5000,
-        },
-        // Teh & Buah
-        {
-          id: "t1",
-          name: "Nutrisari",
-          category: "Teh & Buah",
-          icon: "fa-lemon",
-          basePrice: 4000,
-        },
-        {
-          id: "t3",
-          name: "MaxTea Tarikk",
-          category: "Teh & Buah",
-          icon: "fa-mug-hot",
-          basePrice: 5000,
-        },
-        // Khas Warkop
-        {
-          id: "w1",
-          name: "Josu (Extra Joss Susu)",
-          category: "Khas Warkop",
-          icon: "fa-bolt",
-          basePrice: 6000,
-        },
-        {
-          id: "w2",
-          name: "Teh Manis",
-          category: "Khas Warkop",
-          icon: "fa-mug-hot",
-          basePrice: 4000,
-        },
-        {
-          id: "w3",
-          name: "Coffee Beer",
-          category: "Khas Warkop",
-          icon: "fa-beer",
-          basePrice: 10000,
-        },
-        {
-          id: "w4",
-          name: "Temulawak",
-          category: "Khas Warkop",
-          icon: "fa-mug-hot",
-          basePrice: 8000,
-        },
-        // Makanan
-        {
-          id: "m1",
-          name: "Indomie Goreng",
-          category: "Makanan",
-          icon: "fa-bowl-food",
-          basePrice: 8000,
-        },
-        {
-          id: "m2",
-          name: "Indomie Soto",
-          category: "Makanan",
-          icon: "fa-bowl-rice",
-          basePrice: 8000,
-        },
-        {
-          id: "m3",
-          name: "Indomie Ayam Bawang",
-          category: "Makanan",
-          icon: "fa-bowl-rice",
-          basePrice: 8000,
-        },
-        {
-          id: "m4",
-          name: "Indomie Kari Ayam",
-          category: "Makanan",
-          icon: "fa-bowl-rice",
-          basePrice: 8000,
-        },
-        {
-          id: "m5",
-          name: "Gorengan",
-          category: "Makanan",
-          icon: "fa-cookie",
-          basePrice: 3000,
-        },
-      ];
-
-      let cart = [];
-      let currentCategory = "Semua";
-
-      // Fungsi Format Rupiah
-      const formatRp = (num) => "Rp " + num.toLocaleString("id-ID");
-
-      // Render Filter Kategori
-      function renderCategories() {
-        const categories = [
-          "Semua",
-          ...new Set(menuData.map((item) => item.category)),
-        ];
-        const filterContainer = document.getElementById("category-filter");
-
-        let html = "";
-        categories.forEach((cat) => {
-          const activeClass = cat === currentCategory ? "active" : "";
-          html += `<button class="btn-filter ${activeClass}" onclick="setCategory('${cat}')">${cat}</button>`;
-        });
-        filterContainer.innerHTML = html;
-      }
-
-      // Ubah Kategori
-      function setCategory(cat) {
-        currentCategory = cat;
-        renderCategories();
-        renderMenu();
-      }
-
-      // Render Menu Grid
-      function renderMenu() {
-        const grid = document.getElementById("product-grid");
-        const filteredData =
-          currentCategory === "Semua"
-            ? menuData
-            : menuData.filter((i) => i.category === currentCategory);
-
-        let html = "";
-        filteredData.forEach((item) => {
-          html += `
-                <div class="product-card">
-                    <div class="product-icon"><i class="fas ${item.icon}"></i></div>
-                    <h3>${item.name}</h3>
-                    <p class="price">${formatRp(item.basePrice)}</p>
-                    <button class="btn btn-add" onclick="addToCart('${item.id}')">
-                        <i class="fas fa-plus"></i> Tambah
-                    </button>
-                </div>
-                `;
-        });
-        grid.innerHTML = html;
-      }
-
-      // Tambah ke Keranjang
-      function addToCart(id) {
-        const item = menuData.find((i) => i.id === id);
-        const existItem = cart.find((c) => c.id === id);
-
-        if (existItem) {
-          existItem.qty += 1;
+      // --- LOGIKA TEMA (LIGHT/DARK) ---
+      function toggleTheme() {
+        const html = document.documentElement;
+        const icon = document.getElementById("theme-icon");
+        
+        if (html.getAttribute("data-theme") === "light") {
+          html.setAttribute("data-theme", "dark");
+          icon.classList.remove("fa-moon");
+          icon.classList.add("fa-sun");
         } else {
-          cart.push({ ...item, qty: 1 });
+          html.setAttribute("data-theme", "light");
+          icon.classList.remove("fa-sun");
+          icon.classList.add("fa-moon");
         }
-
-        updateCartUI();
-
-        // Pop-up notifikasi mini (Toast)
-        Swal.fire({
-          toast: true,
-          position: "bottom-end",
-          icon: "success",
-          title: `${item.name} masuk keranjang!`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
       }
 
-      // Buka/Tutup Sidebar Cart
-      function toggleCart() {
-        const sidebar = document.getElementById("cart-sidebar");
-        const overlay = document.getElementById("cart-overlay");
-        sidebar.classList.toggle("open");
-        overlay.classList.toggle("show");
-      }
-
-      // Render UI Keranjang
-      function updateCartUI() {
-        const cartBody = document.getElementById("cart-body");
-        const badge = document.getElementById("cart-badge");
-        const totalPriceEl = document.getElementById("cart-total-price");
-
-        // Update Badge Jumlah
-        const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-        badge.innerText = totalQty;
-
-        // Hitung Total Harga
-        let totalPrice = 0;
-
-        if (cart.length === 0) {
-          cartBody.innerHTML = `
-                    <div style="text-align: center; color: #7f8fa6; margin-top: 50px;">
-                        <i class="fas fa-box-open fa-3x mb-3"></i>
-                        <p>Keranjang kamu masih kosong nih.</p>
-                    </div>`;
-        } else {
-          let html = "";
-          cart.forEach((item, index) => {
-            totalPrice += item.basePrice * item.qty;
-            html += `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <h4>${item.name}</h4>
-                            <p>${formatRp(item.basePrice)}</p>
-                        </div>
-                        <div class="cart-qty-ctrl">
-                            <button onclick="changeQty(${index}, -1)"><i class="fas fa-minus"></i></button>
-                            <span>${item.qty}</span>
-                            <button onclick="changeQty(${index}, 1)"><i class="fas fa-plus"></i></button>
-                        </div>
-                    </div>
-                    `;
-          });
-          cartBody.innerHTML = html;
+      // --- LOGIKA TRANSLASI BAHASA ---
+      const translations = {
+        id: {
+          navHome: "Beranda", navAbout: "Tentang Kami", navOrder: "Pesan Online", navGallery: "Galeri Area", navContact: "Kontak",
+          heroTitle: "Awali Hari Dengan Semangat Galaxy",
+          heroDesc: "Tempat nongkrong andalan warga Depok. Pesan langsung lewat sistem kasir online kami, praktis dan cepat!",
+          btnOrder: "Buka Menu & Pesan",
+          aboutTitle: "Nongkrong Asik, Harga Gak Bikin Panik",
+          aboutP1: "Selamat datang di <strong>Warkop Galaxy</strong>! Kami memadukan konsep warkop tradisional dengan kenyamanan cafe modern ala jejepangan. Buka 24 jam untuk menemani kamu nugas, mabar, atau sekadar bertukar cerita.",
+          aboutP2: "Fasilitas lengkap: WiFi kencang, colokan di setiap meja, dan area yang luas. Langsung cek ketersediaan menu dan pesan via sistem POS kami, pesanan langsung mendarat di mejamu!",
+          galleryTitle: "Suasana Warkop Galaxy",
+          galleryDesc: "Pilih spot ternyaman sesuai mood kamu hari ini.",
+          gal1: "Parkiran Motor", gal2: "Smoking Area", gal3: "Ruang Produktif",
+          contactTitle: "Hubungi Kami", contactDesc: "Ingin booking tempat atau sekadar tanya-tanya?",
+          contactAddrTitle: "Alamat Kami",
+          formName: "Nama Lengkap", formContact: "Email / No. HP", formMsg: "Pesan / Keperluan Booking", btnSubmit: "Kirim Pesan",
+          footerLoc: "Depok, Jawa Barat. Buka 24 Jam Non-Stop.",
+          placeName: "Masukkan nama Anda...", placeContact: "Agar kami bisa membalas...", placeMsg: "Tulis pesan Anda di sini..."
+        },
+        en: {
+          navHome: "Home", navAbout: "About Us", navOrder: "Order Online", navGallery: "Gallery", navContact: "Contact",
+          heroTitle: "Start Your Day with Galaxy Spirit",
+          heroDesc: "The ultimate hangout spot in Depok. Order directly through our online POS system, practical and fast!",
+          btnOrder: "Open Menu & Order",
+          aboutTitle: "Cool Hangout, Chill Prices",
+          aboutP1: "Welcome to <strong>Warkop Galaxy</strong>! We blend the traditional warkop concept with modern Japanese cafe comfort. Open 24 hours to accompany your studying, gaming, or just sharing stories.",
+          aboutP2: "Complete facilities: Fast WiFi, power outlets at every table, and a spacious area. Check menu availability and order directly via our POS system, your order lands straight on your table!",
+          galleryTitle: "Warkop Galaxy Atmosphere",
+          galleryDesc: "Choose the most comfortable spot matching your mood today.",
+          gal1: "Motorcycle Parking", gal2: "Smoking Area", gal3: "Productive Space",
+          contactTitle: "Contact Us", contactDesc: "Want to book a place or just asking around?",
+          contactAddrTitle: "Our Address",
+          formName: "Full Name", formContact: "Email / Phone No.", formMsg: "Message / Booking Purpose", btnSubmit: "Send Message",
+          footerLoc: "Depok, West Java. Open 24/7 Non-Stop.",
+          placeName: "Enter your name...", placeContact: "So we can reply...", placeMsg: "Write your message here..."
+        },
+        jp: {
+          navHome: "ホーム", navAbout: "私たちについて", navOrder: "オンライン注文", navGallery: "ギャラリー", navContact: "お問い合わせ",
+          heroTitle: "ギャラクシースピリットで一日を始めよう",
+          heroDesc: "デポックの究極のたまり場。オンラインPOSシステムから直接注文、実用的でスピーディ！",
+          btnOrder: "メニューを開いて注文",
+          aboutTitle: "最高の空間、安心の価格",
+          aboutP1: "<strong>ワルン・ギャラクシー</strong>へようこそ！伝統的なワルンのコンセプトとモダンな日本のカフェの快適さを融合させました。勉強、ゲーム、またはおしゃべりのお供に24時間営業しています。",
+          aboutP2: "充実の設備：高速WiFi、各テーブルにコンセント完備、広々とした空間。メニューを確認してPOSシステムから直接注文、料理はすぐにテーブルに届きます！",
+          galleryTitle: "ギャラクシーの雰囲気",
+          galleryDesc: "今日の気分に合わせて一番快適なスポットを選んでください。",
+          gal1: "駐輪場", gal2: "喫煙エリア", gal3: "作業スペース",
+          contactTitle: "お問い合わせ", contactDesc: "予約や質問がありますか？",
+          contactAddrTitle: "住所",
+          formName: "氏名", formContact: "メール / 電話番号", formMsg: "メッセージ / 予約目的", btnSubmit: "送信する",
+          footerLoc: "西ジャワ州デポック。24時間年中無休。",
+          placeName: "名前を入力...", placeContact: "返信できるように...", placeMsg: "ここにメッセージを書いてください..."
         }
+      };
 
-        totalPriceEl.innerText = formatRp(totalPrice);
-      }
-
-      // Ubah Qty di Keranjang
-      function changeQty(index, amount) {
-        cart[index].qty += amount;
-        if (cart[index].qty <= 0) {
-          cart.splice(index, 1);
-        }
-        updateCartUI();
-      }
-
-      // Checkout & Kirim WA
-      function checkoutWA() {
-        if (cart.length === 0) {
-          Swal.fire({
-            icon: "warning",
-            title: "Oops...",
-            text: "Pilih menu dulu dong!",
-          });
-          return;
-        }
-
-        const name = document.getElementById("orderName").value.trim();
-        const table = document.getElementById("orderTable").value.trim();
-
-        if (!name || !table) {
-          Swal.fire({
-            icon: "error",
-            title: "Tunggu Dulu...",
-            text: "Nama dan Nomor Meja wajib diisi ya!",
-          });
-          return;
-        }
-
-        let totalPrice = 0;
-        let text = `*HALO WARKOP GALAXY!* 🚀%0ASaya mau pesan online (Dine-In):%0A%0A`;
-
-        cart.forEach((item) => {
-          const subtotal = item.basePrice * item.qty;
-          totalPrice += subtotal;
-          text += `▪️ *${item.name}*%0A     ${item.qty} x ${formatRp(item.basePrice)} = *${formatRp(subtotal)}*%0A`;
+      function changeLanguage(lang) {
+        document.querySelectorAll("[data-i18n]").forEach(element => {
+          const key = element.getAttribute("data-i18n");
+          if (translations[lang] && translations[lang][key]) {
+            // Cek jika elemen butuh innerHTML (karena ada tag <strong>)
+            if(key === 'aboutP1' || key === 'aboutP2') {
+                element.innerHTML = translations[lang][key];
+            } else {
+                element.textContent = translations[lang][key];
+            }
+          }
         });
 
-        text += `%0A--------------------------------%0A`;
-        text += `*TOTAL PEMBAYARAN: ${formatRp(totalPrice)}*%0A`;
-        text += `--------------------------------%0A%0A`;
-        text += `*Info Pemesan:*%0A`;
-        text += `🗣 Nama: ${name}%0A`;
-        text += `🪑 Meja Nomor: ${table}%0A`;
-
-        const waLink = `https://wa.me/${WA_NUMBER}?text=${text}`;
-        window.open(waLink, "_blank");
+        // Update placeholder input form
+        document.getElementById("formInputName").placeholder = translations[lang].placeName;
+        document.getElementById("formInputContact").placeholder = translations[lang].placeContact;
+        document.getElementById("formInputMsg").placeholder = translations[lang].placeMsg;
       }
-
-      // Initialize on Load
-      renderCategories();
-      renderMenu();
     </script>
   </body>
 </html>
